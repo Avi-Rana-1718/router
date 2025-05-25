@@ -1,0 +1,21 @@
+package com.avirana.router.entity;
+
+import jakarta.persistence.*;
+import java.time.OffsetDateTime;
+
+
+@Entity
+@Table("views")
+public class ViewEntity {
+
+    @Id
+    @Column("url")
+    public String url;
+
+    @Column("ip")
+    public String ip;
+
+    @Column("location")
+    public float location;
+
+}
