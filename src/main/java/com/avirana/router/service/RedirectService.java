@@ -1,9 +1,12 @@
 package com.avirana.router.service;
 
 import java.util.HashMap;
+import java.util.Optional;
 
+import com.avirana.router.entity.ViewEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.avirana.router.repository.ViewRepository;
@@ -26,9 +29,10 @@ public class RedirectService {
         urlMapper.put("myanimelist", "https://myanimelist.net/profile/_AviRana");
     }
 
-    public RedirectView getRoute(String key) {
+    public RedirectView getRoute(String key, String ip) {
         String path = urlMapper.getOrDefault(key, "/404");
-        viewRepository.findOne(null);
+        ViewEntity view = new ViewEntity(key, ip);
+        viewRepository.save(view);
         return new RedirectView(path);
     }
 }
