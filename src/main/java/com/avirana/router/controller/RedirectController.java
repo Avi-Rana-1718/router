@@ -22,10 +22,4 @@ public class RedirectController {
     public RedirectView getRoute(@PathVariable String id, HttpServletRequest request) {
         return redirectService.getRoute(id, request.getRemoteAddr());
     }
-
-    @GetMapping("404")
-    public String notFound() {
-        return "404";
-    }
-    
 }

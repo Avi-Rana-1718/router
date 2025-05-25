@@ -29,8 +29,11 @@ public class RedirectService {
         urlMapper.put("myanimelist", "https://myanimelist.net/profile/_AviRana");
     }
 
-    public RedirectView getRoute(String key, String ip) {
-        String path = urlMapper.getOrDefault(key, "/404");
+    public RedirectView getRoute(String key, String ip) throws RuntimeException {
+        String path = urlMapper.getOrDefault(key, "not found");
+        if(path.equals("not found")) {
+            throw new RuntimeException();
+        }
         ViewEntity view = new ViewEntity(key, ip);
         viewRepository.save(view);
         return new RedirectView(path);
